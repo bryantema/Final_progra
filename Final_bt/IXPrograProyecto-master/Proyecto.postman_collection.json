@@ -1,0 +1,271 @@
+{
+	"info": {
+		"_postman_id": "d139afce-4a1f-4c24-b1e8-33f399dc419c",
+		"name": "Proyecto",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "Get Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44378/api/Clientes",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"Clientes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Clientes by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44378/api/Clientes/17",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"Clientes",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Pérez\",\r\n    \"telefono\": 55555,\r\n    \"direccion\": \"Zona 18\",\r\n    \"correo\": \"askjdhasjd@gmail.com\",\r\n    \"estado\": \"Morido\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44378/api/Clientes/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"Clientes",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 17,\r\n    \"nombre\": \"Melvin\",\r\n    \"apellido\": \"Lopez\",\r\n    \"telefono\": 555,\r\n    \"direccion\": \"136 Melvin Place\",\r\n    \"correo\": \"melvin@gmail.com\",\r\n    \"estado\": \"Vivido\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_clientesEntity/17",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_clientesEntity",
+								"17"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_clientesEntity/31",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_clientesEntity",
+								"31"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Viajes",
+			"item": [
+				{
+					"name": "Get Viajes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_detalle_viajeEntity",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_detalle_viajeEntity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Viajes By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_detalle_viajeEntity/23",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_detalle_viajeEntity",
+								"23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post Viajes",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha_salida\": \"2022-09-11T00:00:00\",\r\n    \"fecha_retorno\": \"2022-11-14T00:00:00\",\r\n    \"destino\": \"Guatemala\",\r\n    \"estado\": \"Morido\",\r\n    \"costo\": 200.00,\r\n    \"id_cliente\": 17,\r\n    \"id_vehiculo\": 17\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_detalle_viajeEntity",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_detalle_viajeEntity"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put Viajes",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 42,\r\n    \"fecha_salida\": \"2022-09-12T00:00:00\",\r\n    \"fecha_retorno\": \"2022-11-13T00:00:00\",\r\n    \"destino\": \"Panajachel\",\r\n    \"estado\": \"Revivido\",\r\n    \"costo\": 203.33,\r\n    \"id_cliente\": 17,\r\n    \"id_vehiculo\": 18\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_detalle_viajeEntity/42",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_detalle_viajeEntity",
+								"42"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Viajes",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 42,\r\n    \"fecha_salida\": \"2022-09-12T00:00:00\",\r\n    \"fecha_retorno\": \"2022-11-13T00:00:00\",\r\n    \"destino\": \"Panajachel\",\r\n    \"estado\": \"Revivido\",\r\n    \"costo\": 203.33,\r\n    \"id_cliente\": 17,\r\n    \"id_vehiculo\": 18\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44378/api/tbl_detalle_viajeEntity/43",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44378",
+							"path": [
+								"api",
+								"tbl_detalle_viajeEntity",
+								"43"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

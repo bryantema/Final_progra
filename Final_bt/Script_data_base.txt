@@ -1,0 +1,289 @@
+USE [hoovers_db]
+GO
+/* Object:  Table [dbo].[tbl_clientes]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_clientes](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[nombre] [nvarchar](50) NULL,
+	[apellido] [nvarchar](50) NULL,
+	[telefono] [int] NULL,
+	[direccion] [nvarchar](50) NULL,
+	[correo] [nvarchar](50) NULL,
+	[estado] [nvarchar](50) NULL,
+ CONSTRAINT [PK_tbl_clientes] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_detalle_viaje]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_detalle_viaje](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[fecha_salida] [date] NULL,
+	[fecha_retorno] [date] NULL,
+	[destino] [nvarchar](50) NULL,
+	[estado] [nvarchar](50) NULL,
+	[costo] [float] NULL,
+	[id_cliente] [int] NULL,
+	[id_vehiculo] [int] NULL,
+ CONSTRAINT [PK_tbl_detalle_viaje] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_marca]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_marca](
+	[id_marca] [int] IDENTITY(1,1) NOT NULL,
+	[descripcion] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_tbl_marca] PRIMARY KEY CLUSTERED 
+(
+	[id_marca] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_modulo]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_modulo](
+	[id_modulo] [int] IDENTITY(1,1) NOT NULL,
+	[descripcion] [nvarchar](50) NULL,
+ CONSTRAINT [PK_tbl_modulo] PRIMARY KEY CLUSTERED 
+(
+	[id_modulo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_peticion]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_peticion](
+	[id_peticion] [int] IDENTITY(1,1) NOT NULL,
+	[descripcion] [nvarchar](50) NULL,
+ CONSTRAINT [PK_tbl_peticion] PRIMARY KEY CLUSTERED 
+(
+	[id_peticion] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_bitacora]   Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_bitacora](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[id_modulo] [int] NULL,
+	[id_peticion] [int] NULL,
+	[id_tipo] [int] NULL,
+	[id_marca] [int] NULL,
+	[fecha_bitacora] [datetime] NULL,
+	[detalle] [int] NULL,
+ CONSTRAINT [PK_tbl_registros] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_tipo_vehiculo]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_tipo_vehiculo](
+	[id_tipo] [int] IDENTITY(1,1) NOT NULL,
+	[descripcion] [nchar](10) NULL,
+ CONSTRAINT [PK_tbl_tipo_vehiculo] PRIMARY KEY CLUSTERED 
+(
+	[id_tipo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/* Object:  Table [dbo].[tbl_vehiculo]    Script Date: 02/04/2022 23:30:56 */
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[tbl_vehiculo](
+	[id_vehiculo] [int] IDENTITY(1,1) NOT NULL,
+	[marca] [nvarchar](50) NULL,
+	[linea] [nvarchar](50) NULL,
+	[modelo] [int] NULL,
+	[placa] [nvarchar](50) NULL,
+	[color] [nvarchar](50) NULL,
+	[capacidad] [int] NULL,
+	[id_tipo] [int] NOT NULL,
+	[stado] [nvarchar](50) NULL,
+ CONSTRAINT [PK_tbl_vehiculo] PRIMARY KEY CLUSTERED 
+(
+	[id_vehiculo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[tbl_clientes] ON 
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (17, N'Isaac', N'Penney', 830, N'136 Melvin Place', N'ipenney0@sciencedaily.com', N'Leopard, indian')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (18, N'Ginger', N'Le Sieur', 809, N'459 Bayside Avenue', N'glesieur1@ehow.com', N'Long-necked turtle')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (20, N'Grantley', N'Brydell', 945, N'9904 Redwing Junction', N'gbrydell3@google.com.au', N'Horned lark')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (21, N'Cornela', N'Donaher', 921, N'82687 Spaight Pass', N'cdonaher4@npr.org', N'South American sea lion')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (22, N'Judas', N'Tonsley', 993, N'88 Harper Avenue', N'jtonsley5@google.com.hk', N'African red-eyed bulbul')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (23, N'Sampson', N'Mahedy', 518, N'1653 Katie Junction', N'smahedy6@about.me', N'Deer, swamp')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (24, N'Gard', N'Pedro', 537, N'40946 Briar Crest Court', N'gpedro7@oracle.com', N'Australian sea lion')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (25, N'Lyndel', N'Hay', 825, N'2 Shasta Drive', N'lhay8@aboutads.info', N'Tern, white-winged')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (26, N'Dillon', N'Conniam', 693, N'54 Kropf Plaza', N'dconniam9@apache.org', N'Asian red fox')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (27, N'Noam', N'Kick', 858, N'44218 Nevada Pass', N'nkicka@4shared.com', N'Pelican, australian')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (28, N'Cymbre', N'Arnoldi', 700, N'73594 Jana Street', N'carnoldib@friendfeed.com', N'European shelduck')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (29, N'Yardley', N'Danielczyk', 804, N'9895 Bay Park', N'ydanielczykc@gov.uk', N'Weaver, red-billed buffalo')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (30, N'Ilaire', N'Dyos', 713, N'26248 Grim Road', N'idyosd@mayoclinic.com', N'Lizard, frilled')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (31, N'Nara', N'Petracco', 506, N'02246 Dapin Parkway', N'npetraccoe@oakley.com', N'Waxbill, blue')
+GO
+INSERT [dbo].[tbl_clientes] ([id], [nombre], [apellido], [telefono], [direccion], [correo], [estado]) VALUES (32, N'Olga', N'Hinestroza', 465465, N'Guatemala', N'olga@gmail.com', N'Activa')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_clientes] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_detalle_viaje] ON 
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (23, CAST(N'2021-09-11' AS Date), CAST(N'2021-11-14' AS Date), N'San Jacinto', N'Finch, common melba', 216.01, 32, 29)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (24, CAST(N'2021-11-25' AS Date), CAST(N'2022-05-28' AS Date), N'Latung', N'Four-spotted skimmer', 324.46, 24, 24)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (25, CAST(N'2021-06-23' AS Date), CAST(N'2021-09-28' AS Date), N'Serh', N'Horned lark', 303.93, 18, 26)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (26, CAST(N'2021-10-08' AS Date), CAST(N'2022-03-15' AS Date), N'Yurovka', N'Giraffe', 316.87, 32, 20)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (27, CAST(N'2022-03-04' AS Date), CAST(N'2022-01-28' AS Date), N'Basar', N'Dragon, ornate rock', 399.58, 32, 18)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (28, CAST(N'2021-09-23' AS Date), CAST(N'2021-04-18' AS Date), N'Káto Glikóvrisi', N'Cockatoo, red-tailed', 253.49, 28, 22)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (29, CAST(N'2022-04-08' AS Date), CAST(N'2021-07-02' AS Date), N'Maguan', N'Fork-tailed drongo', 477.55, 32, 21)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (30, CAST(N'2022-01-26' AS Date), CAST(N'2021-10-13' AS Date), N'Diriamba', N'Dove, white-winged', 341.46, 22, 27)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (31, CAST(N'2021-12-23' AS Date), CAST(N'2021-12-17' AS Date), N'Ituiutaba', N'Egret, snowy', 478.52, 21, 25)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (32, CAST(N'2021-09-05' AS Date), CAST(N'2021-09-21' AS Date), N'Tentúgal', N'Herring gull', 329.03, 27, 21)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (33, CAST(N'2021-11-22' AS Date), CAST(N'2021-08-07' AS Date), N'Debe Wielkie', N'Spotted hyena', 491.09, 18, 22)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (34, CAST(N'2021-11-28' AS Date), CAST(N'2022-05-09' AS Date), N'Pskov', N'Red-legged pademelon', 362.64, 23, 29)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (35, CAST(N'2021-10-11' AS Date), CAST(N'2021-10-18' AS Date), N'Yousheng', N'Ant (unidentified)', 280.75, 21, 27)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (36, CAST(N'2021-09-12' AS Date), CAST(N'2022-01-26' AS Date), N'Niederanven', N'Antelope, roan', 467.86, 26, 21)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (37, CAST(N'2021-05-12' AS Date), CAST(N'2021-07-11' AS Date), N'Yulin', N'Lemur, ring-tailed', 364.66, 32, 26)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (38, CAST(N'2022-02-22' AS Date), CAST(N'2021-07-22' AS Date), N'Shetan', N'Scottish highland cow', 402.62, 29, 29)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (39, CAST(N'2021-12-08' AS Date), CAST(N'2021-08-13' AS Date), N'Wilczyce', N'Heron, green-backed', 277.62, 22, 27)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (40, CAST(N'2022-04-02' AS Date), CAST(N'2021-12-14' AS Date), N'Masis', N'Rufous tree pie', 257.31, 23, 28)
+GO
+INSERT [dbo].[tbl_detalle_viaje] ([id], [fecha_salida], [fecha_retorno], [destino], [estado], [costo], [id_cliente], [id_vehiculo]) VALUES (41, CAST(N'2021-12-16' AS Date), CAST(N'2021-06-08' AS Date), N'Chatian', N'Parrot, hawk-headed', 497.79, 28, 19)
+GO
+SET IDENTITY_INSERT [dbo].[tbl_detalle_viaje] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_tipo_vehiculo] ON 
+GO
+INSERT [dbo].[tbl_tipo_vehiculo] ([id_tipo], [descripcion]) VALUES (6, N'Sedan     ')
+GO
+INSERT [dbo].[tbl_tipo_vehiculo] ([id_tipo], [descripcion]) VALUES (7, N'SUV       ')
+GO
+INSERT [dbo].[tbl_tipo_vehiculo] ([id_tipo], [descripcion]) VALUES (8, N'Pickup    ')
+GO
+INSERT [dbo].[tbl_tipo_vehiculo] ([id_tipo], [descripcion]) VALUES (9, N'4X4       ')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_tipo_vehiculo] OFF
+GO
+SET IDENTITY_INSERT [dbo].[tbl_vehiculo] ON 
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (17, N'Land Rover', N'Defender', 1993, N'591', N'Teal', 8, 7, N'4')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (18, N'Cadillac', N'STS', 2009, N'967', N'Indigo', 4, 8, N'2')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (19, N'Saab', N'900', 1988, N'501', N'Puce', 9, 6, N'5')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (20, N'Buick', N'Riviera', 1990, N'803', N'Puce', 2, 7, N'9')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (21, N'Audi', N'S4', 2013, N'996', N'Green', 3, 6, N'8')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (22, N'Mazda', N'626', 1994, N'765', N'Purple', 4, 9, N'5')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (23, N'Cadillac', N'Escalade EXT', 2008, N'775', N'Crimson', 3, 8, N'10')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (24, N'Chevrolet', N'Malibu', 2002, N'641', N'Green', 8, 9, N'2')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (25, N'Mercedes-Benz', N'R-Class', 2007, N'853', N'Red', 2, 9, N'10')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (26, N'Lexus', N'GS', 2003, N'978', N'Khaki', 5, 7, N'10')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (27, N'Ford', N'Explorer', 2011, N'805', N'Fuscia', 8, 9, N'2')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (28, N'Ford', N'Mustang', 2000, N'675', N'Khaki', 2, 8, N'3')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (29, N'Pontiac', N'6000', 1984, N'956', N'Pink', 9, 8, N'6')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (30, N'Dodge', N'Ram', 2009, N'739', N'Orange', 10, 9, N'7')
+GO
+INSERT [dbo].[tbl_vehiculo] ([id_vehiculo], [marca], [linea], [modelo], [placa], [color], [capacidad], [id_tipo], [stado]) VALUES (31, N'Mitsubishi', N'Mirage', 1993, N'978', N'Green', 2, 9, N'3')
+GO
+SET IDENTITY_INSERT [dbo].[tbl_vehiculo] OFF
+GO
+ALTER TABLE [dbo].[tbl_detalle_viaje]  WITH CHECK ADD  CONSTRAINT [FK_tbl_detalle_viaje_tbl_clientes] FOREIGN KEY([id_cliente])
+REFERENCES [dbo].[tbl_clientes] ([id])
+GO
+ALTER TABLE [dbo].[tbl_detalle_viaje] CHECK CONSTRAINT [FK_tbl_detalle_viaje_tbl_clientes]
+GO
+ALTER TABLE [dbo].[tbl_detalle_viaje]  WITH CHECK ADD  CONSTRAINT [FK_tbl_detalle_viaje_tbl_vehiculo] FOREIGN KEY([id_vehiculo])
+REFERENCES [dbo].[tbl_vehiculo] ([id_vehiculo])
+GO
+ALTER TABLE [dbo].[tbl_detalle_viaje] CHECK CONSTRAINT [FK_tbl_detalle_viaje_tbl_vehiculo]
+GO
+ALTER TABLE [dbo].[tbl_bitacora]  WITH CHECK ADD  CONSTRAINT [FK_tbl_registros_tbl_marca] FOREIGN KEY([id_marca])
+REFERENCES [dbo].[tbl_marca] ([id_marca])
+GO
+ALTER TABLE [dbo].[tbl_bitacora] CHECK CONSTRAINT [FK_tbl_registros_tbl_marca]
+GO
+ALTER TABLE [dbo].[tbl_bitacora]  WITH CHECK ADD  CONSTRAINT [FK_tbl_bitacora_tbl_modulo] FOREIGN KEY([id_modulo])
+REFERENCES [dbo].[tbl_modulo] ([id_modulo])
+GO
+ALTER TABLE [dbo].[tbl_bitacora] CHECK CONSTRAINT [FK_tbl_bitacora_tbl_modulo]
+GO
+ALTER TABLE [dbo].[tbl_bitacora]  WITH CHECK ADD  CONSTRAINT [FK_tbl_bitacora_tbl_peticion] FOREIGN KEY([id_request])
+REFERENCES [dbo].[tbl_peticion] ([id_peticion])
+GO
+ALTER TABLE [dbo].[tbl_bitacora] CHECK CONSTRAINT [FK_tbl_bitacora_tbl_peticion]
+GO
+ALTER TABLE [dbo].[tbl_vehiculo]  WITH CHECK ADD  CONSTRAINT [FK_tbl_vehiculo_tbl_tipo_vehiculo] FOREIGN KEY([id_tipo])
+REFERENCES [dbo].[tbl_tipo_vehiculo] ([id_tipo])
+GO
+ALTER TABLE [dbo].[tbl_vehiculo] CHECK CONSTRAINT [FK_tbl_vehiculo_tbl_tipo_vehiculo]
+GO
