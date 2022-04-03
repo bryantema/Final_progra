@@ -1,0 +1,10 @@
+/*Top 10 de marcas*/
+
+  SELECT id_marca count(id_marca) AS total_marcas FROM tbl_bitacora group by id_marca order by total_marcas desc
+
+/*Reporte marca y tipo de vehículo*/
+
+  SELECT tbl_bitacora.id_tipo, tbl_tipo_vehiculo.descripcion, tbl_bitacora.id_marca, tbl_marca.descripcion FROM tbl_detalle_bitacora 
+  	JOIN tbl_marca ON tbl_bitacora.id_marca = tbl_marca.id_marca
+  	JOIN tbl_tipo_vehiculo ON tbl_bitacora.id_tipo = tbl_tipo_vehiculo.id_tipo
+  	ORDER BY id_tipo ASC
